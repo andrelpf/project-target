@@ -1,0 +1,44 @@
+<!-- Container -->
+<div class="container">
+  <!-- Formulário expansion panel -->
+  <mat-expansion-panel hideToggle class="w-100 mb-30" expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Projeto - Target
+      </mat-panel-title>
+      <mat-panel-description>
+        Formulário
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div fxLayout="row" class="w-100">
+      <!-- Form -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="w-100">
+        <!-- Field Name -->
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <mat-form-field fxFlex="60">
+            <input matInput placeholder="Nome" formControlName="name">
+            <mat-error *ngIf="getError('name')">{{getError('name')}}</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- Field Tel -->
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <mat-form-field fxFlex="60">
+            <input matInput placeholder="Telefone" formControlName="tel">
+            <mat-error *ngIf="getError('tel')">{{getError('tel')}}</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- Buttons -->
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+          <button type="button" (click)="limparForm()" mat-raised-button fxFlex="30">
+            Limpar
+          </button>
+          <button type="submit" mat-raised-button color="primary" fxFlex="30">
+            Salvar
+          </button>
+        </div>
+      </form>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- Listagem component -->
+  <app-list-users *ngIf="users?.length" [users]="users"></app-list-users>

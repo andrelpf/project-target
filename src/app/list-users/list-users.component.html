@@ -1,0 +1,49 @@
+<!-- Listar Users Panel -->
+<mat-expansion-panel hideToggle class="w-100" expanded="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Projeto - Target
+    </mat-panel-title>
+    <mat-panel-description>
+      Listar
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <!-- Ações -->
+  <div fxLayout="column">
+    <div>
+      <!-- Filtro -->
+      <mat-form-field>
+        <mat-label>Filtrar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. nome" #input>
+      </mat-form-field>
+    </div>
+    <!-- Limpar  -->
+    <button type="button" (click)="clearTable()" mat-raised-button class="mb-10">
+      Limpar Tabela
+    </button>
+  </div>
+  <div fxLayout="row" class="w-100">
+    <!-- Table -->
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Tel Column -->
+      <ng-container matColumnDef="tel">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefone </th>
+        <td mat-cell *matCellDef="let element"> {{element.tel}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Sem dados -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Nenhum dado encontrado para os filtros "{{input.value}}"</td>
+      </tr>
+    </table>
+  </div>
+</mat-expansion-panel>
