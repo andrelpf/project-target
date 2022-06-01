@@ -1,5 +1,5 @@
 import { InitialFormComponent } from './../initial-form/initial-form.component';
-import { AfterViewChecked, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, DoCheck, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../interfaces/initial-form';
@@ -9,7 +9,7 @@ import { User } from '../interfaces/initial-form';
   templateUrl: './list-users.component.html',
   styleUrls: ['./list-users.component.scss']
 })
-export class ListUsersComponent implements OnInit, AfterViewChecked {
+export class ListUsersComponent implements OnInit, DoCheck {
   // Input
   @Input() users!: User[];
   //Sort
@@ -25,7 +25,7 @@ export class ListUsersComponent implements OnInit, AfterViewChecked {
     this.atualizarTable();
   }
 
-  ngAfterViewChecked(): void {
+  ngDoCheck(): void {
     // Atualizar tabela
     this.atualizarTable();
   }
